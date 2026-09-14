@@ -1,0 +1,72 @@
+
+    <!-- #  css id selector It tells the browser to apply those specific styles only to the single HTML element that has a matching -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Interactive Quiz</title>
+<style>
+    body { font-family: sans-serif; background: cyan; display: grid; place-items: center; min-height: 100vh; margin: 0; }
+    form { background: #fff; padding: 30px; border-radius: 8px; width: 350px; }
+    h2 { text-align: center; }
+    div { margin-bottom: 20px; }
+    label { cursor: pointer; display: block; }
+    button { width: 100%; padding: 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    #result { margin-top: 20px; padding: 15px; text-align: center; font-weight: bold; background: #e2e3e5; display: none; }
+    
+</style>
+</head>
+<body>
+
+<form id="quiz">
+    <h2>Simple Quiz</h2>
+    <div>
+        <!-- radio is type, which let you select only 1 option-->
+        <p>1. What is the capital of France?</p>
+        <label><input type="radio" name="q1" value="a"> London</label>
+        <label><input type="radio" name="q1" value="b"> Paris</label>
+        <label><input type="radio" name="q1" value="c"> Berlin</label>
+    </div>
+    <div>
+        <p>2. Which planet is the Red Planet?</p>
+        <label><input type="radio" name="q2" value="a"> Earth</label>
+        <label><input type="radio" name="q2" value="b"> Jupiter</label>
+        <label><input type="radio" name="q2" value="c"> Mars</label>
+    </div>
+    <div>
+        <p>3. What is 5 + 3?</p>
+        <label><input type="radio" name="q3" value="a"> 8</label>
+        <label><input type="radio" name="q3" value="b"> 10</label>
+        <label><input type="radio" name="q3" value="c"> 6</label>
+    </div>
+    <!-- onclick, not click because onlick is attribute name, click is a method -->
+
+    <button type="button" onclick="calculate()">Submit Quiz</button>
+    <div id="result"></div>
+</form>
+
+<script>
+    function calculate() {
+    var answers = ['b', 'c', 'a'];
+    var form = document.getElementById('quiz');
+    var data = new FormData(form);
+    var score = 0;
+
+    for (var i = 0; i < answers.length; i++) {
+        var questionName = 'q' + (i + 1);
+        if (data.get(questionName) == answers[i]) {
+            score = score + 1;
+        }
+    }
+
+    var accuracy = (score / 3) * 100;
+    var result = document.getElementById('result');
+    result.style.display = 'block';
+    result.innerHTML = 'Score: ' + score + ' / 3<br>Accuracy: ' + accuracy.toFixed(1) + '%';
+}
+</script>
+</body>
+</html>
+<!-- .toFixed() is a built-in JavaScript method that formats a number to a specified number of decimal places and returns the result as a string(number does not go on infinitely).-->
