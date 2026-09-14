@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Simple Interactive Quiz</title>
 <style>
-    body { font-family: sans-serif; background: cyan; display: grid; place-items: center; min-height: 100vh; margin: 0; }
+    body { font-family: sans-serif; background: skyblue; display: grid; place-items: center; min-height: 100vh; margin: 0; }
     form { background: #fff; padding: 30px; border-radius: 8px; width: 350px; }
     h2 { text-align: center; }
     div { margin-bottom: 20px; }
@@ -25,28 +25,32 @@
     <div>
         <!-- radio is type, which let you select only 1 option-->
         <p>1. What is the capital of France?</p>
-        <label><input type="radio" name="q1" value="a"> London</label>
-        <label><input type="radio" name="q1" value="b"> Paris</label>
-        <label><input type="radio" name="q1" value="c"> Berlin</label>
+        <label><input type="radio"  value="a"> London</label>
+        <label><input type="radio"  value="b"> Paris</label>
+        <label><input type="radio"  value="c"> Berlin</label>
     </div>
     <div>
         <p>2. Which planet is the Red Planet?</p>
-        <label><input type="radio" name="q2" value="a"> Earth</label>
-        <label><input type="radio" name="q2" value="b"> Jupiter</label>
-        <label><input type="radio" name="q2" value="c"> Mars</label>
+        <label><input type="radio"  value="a"> Earth</label>
+        <label><input type="radio"  value="b"> Jupiter</label>
+        <label><input type="radio"  value="c"> Mars</label>
     </div>
     <div>
         <p>3. What is 5 + 3?</p>
-        <label><input type="radio" name="q3" value="a"> 8</label>
-        <label><input type="radio" name="q3" value="b"> 10</label>
-        <label><input type="radio" name="q3" value="c"> 6</label>
+        <label><input type="radio"  value="a"> 8</label>
+        <label><input type="radio"  value="b"> 10</label>
+        <label><input type="radio"  value="c"> 6</label>
     </div>
     <!-- onclick, not click because onlick is attribute name, click is a method -->
-
+    <!-- calculate (Without Parentheses): This is a reference to the function. It refers to the function's code without running.-->
+<!-- () This is a function call. It tells JavaScript to run the code inside calculate() immediately. -->
     <button type="button" onclick="calculate()">Submit Quiz</button>
     <div id="result"></div>
 </form>
-
+<!-- FormData get all the user's selected inputs (radio buttons  directly from that form. -->
+ <!--  if (data.get(questionName) == answers[i]) { Get the answer selected by the user for that question (e.g., q1) and compares it to the correct answer stored at position i if correct, +1 score. -->
+<!-- i(index, which is set at 0) < answers.length-->
+ <!-- Checks if the loop should keep running. As long as i is less than the total number of answers (3), the loop runs. Once i reaches 3, the condition becomes false and the loop stops.-->
 <script>
     function calculate() {
     var answers = ['b', 'c', 'a'];
@@ -54,7 +58,7 @@
     var data = new FormData(form);
     var score = 0;
 
-    for (var i = 0; i < answers.length; i++) {
+    for (var i = 0; i < answers.length; i = i + 1) {
         var questionName = 'q' + (i + 1);
         if (data.get(questionName) == answers[i]) {
             score = score + 1;
@@ -64,9 +68,14 @@
     var accuracy = (score / 3) * 100;
     var result = document.getElementById('result');
     result.style.display = 'block';
-    result.innerHTML = 'Score: ' + score + ' / 3<br>Accuracy: ' + accuracy.toFixed(1) + '%';
+    result.innerHTML = 'Score: ' + score + ' / 3<br>' +
+                       'Accuracy: ' + accuracy.toFixed(1) + '%<br>' +
+                       'Made by Teekharit Saengmanee M.3/1 No.15(Tester), Suprawee jirajaruwong M.3/1 No.26(Developer) and Pongpatchara M.3/1 No.17(Tester)'
 }
+
 </script>
 </body>
 </html>
 <!-- .toFixed() is a built-in JavaScript method that formats a number to a specified number of decimal places and returns the result as a string(number does not go on infinitely).-->
+ <!-- document.getElementById('result');
+ <!-- Finds the HTML element on the page with id="result" (the container meant to display the final score) and saves it into the result variable.-->
